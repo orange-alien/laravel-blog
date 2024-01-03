@@ -168,6 +168,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+         // ↓↓↓ 追加 ↓↓↓
+        // Illuminate\Http\Request のマクロ
+        App\Providers\RequestMacroServiceProvider::class,
     ])->toArray(),
 
     /*
