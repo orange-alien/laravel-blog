@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Libs\Traits\HttpClientRequestLog;
 use App\Libs\Traits\WritesHttpClientLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\ResponseReceived;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class LogResponseReceived
 {
+    use HttpClientRequestLog;
     use WritesHttpClientLog;
 
     // レスポンス受信時のログを出力するかどうか
@@ -42,6 +44,7 @@ class LogResponseReceived
         $data = [
             'uuid'    => $this->uuid,
             'event'    => ResponseReceived::class,
+            'request'  => $this->requestSendingLogData($request),
             'response' => $this->responseReceivedLogData($response),
         ];
 

@@ -2,15 +2,16 @@
 
 namespace App\Listeners;
 
+use App\Libs\Traits\HttpClientRequestLog;
 use App\Libs\Traits\WritesHttpClientLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\RequestSending;
 use Illuminate\Http\Client\Request;
 use Illuminate\Queue\InteractsWithQueue;
-use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class LogRequestSending
 {
+    use HttpClientRequestLog;
     use WritesHttpClientLog;
 
     // リクエスト送信時のログを出力するかどうか
@@ -45,17 +46,5 @@ class LogRequestSending
         $this->writeLog($data);
     }
 
-    // リクエスト送信時の内容
-    protected function requestSendingLogData(Request $request) : array
-    {
-        return [
-            'method'  => $request->method(),
-            'url'     => $request->url(),
-            'headers' => $request->headers(),
-            'body'    => json_decode($request->body(), true),
-            'query'   => $request->method() === SymfonyRequest::METHOD_GET
-                            ? $request->data()
-                            : null,
-        ];
-    }
+
 }
