@@ -6,7 +6,6 @@ use App\Listeners\Traits\RequestLog;
 use App\Listeners\Traits\WritesLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\ResponseReceived;
-use Illuminate\Http\Client\Request;
 use Illuminate\Http\Client\Response;
 use Illuminate\Queue\InteractsWithQueue;
 

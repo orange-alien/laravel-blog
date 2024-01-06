@@ -6,7 +6,6 @@ use App\Listeners\Traits\RequestLog;
 use App\Listeners\Traits\WritesLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\RequestSending;
-use Illuminate\Http\Client\Request;
 use Illuminate\Queue\InteractsWithQueue;
 
 class LogRequestSending

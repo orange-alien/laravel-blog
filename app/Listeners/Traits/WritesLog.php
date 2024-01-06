@@ -2,10 +2,6 @@
 
 namespace App\Listeners\Traits;
 
-use Illuminate\Http\Client\Request;
-use Illuminate\Http\Client\Response;
-
-
 trait WritesLog
 {
     // ログ出力
