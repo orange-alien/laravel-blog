@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 trait HttpClientRequestLog
 {
     // リクエスト送信時の内容
-    protected function requestSendingLogData(Request $request) : array
+    protected function requestSendingLog(Request $request) : array
     {
         return [
             'method'  => $request->method(),

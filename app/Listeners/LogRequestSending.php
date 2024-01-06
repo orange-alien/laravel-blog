@@ -39,7 +39,7 @@ class LogRequestSending
         $data = [
             'uuid'    => $this->uuid,
             'event'   => RequestSending::class,
-            'request' => $this->requestSendingLogData($request),
+            'request' => $this->requestSendingLog($request),
         ];
 
         // ログ出力
