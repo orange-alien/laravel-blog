@@ -24,7 +24,7 @@ class LogResponseReceived
      */
     public function __construct()
     {
-        $this->responseReceivedLogEnabled = config('api_log.response_received_log_enabled');
+        $this->responseReceivedLogEnabled = config('api.response_received_log_enabled');
     }
 
     /**

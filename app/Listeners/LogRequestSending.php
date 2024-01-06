@@ -21,7 +21,7 @@ class LogRequestSending
      */
     public function __construct()
     {
-        $this->requestSendingLogEnabled = config('api_log.request_sending_log_enabled');
+        $this->requestSendingLogEnabled = config('api.request_sending_log_enabled');
     }
 
     /**
