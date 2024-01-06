@@ -42,7 +42,7 @@ class LogResponseReceived
         $request  = $event->request;
         $response = $event->response;
         $data = [
-            'uuid'    => $this->uuid,
+            'uuid'     => $this->uuid,
             'event'    => ResponseReceived::class,
             'request'  => $this->requestLog($request),
             'response' => $this->responseLog($response),
