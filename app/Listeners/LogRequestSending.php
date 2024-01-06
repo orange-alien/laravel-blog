@@ -7,17 +7,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\RequestSending;
 use Illuminate\Http\Client\Request;
 use Illuminate\Queue\InteractsWithQueue;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class LogRequestSending
 {
     use HttpClientLog;
+
+    // リクエスト送信時のログを出力するかどうか
+    protected bool $requestSendingLogEnabled = false;
 
     /**
      * Create the event listener.
      */
     public function __construct()
     {
-        //
+        $this->requestSendingLogEnabled = config('api_log.request_sending_log_enabled');
     }
 
     /**
@@ -25,18 +29,32 @@ class LogRequestSending
      */
     public function handle(RequestSending $event): void
     {
-        $request = $event->request;
+        if(!$this->requestSendingLogEnabled) {
+            return;
+        }
 
-        $logData = $this->logData($request);
-        $this->writeLog($logData);
+        // ログの内容
+        $request = $event->request;
+        $data = [
+            'event'   => RequestSending::class,
+            'request' => $this->requestSendingLogData($request),
+        ];
+
+        // ログ出力
+        $this->writeLog($data);
     }
 
-    // ログの内容
-    protected function logData(Request $request) : array
+    // リクエスト送信時の内容
+    protected function requestSendingLogData(Request $request) : array
     {
         return [
-            'event'   => 'request.sending',
-            'request' => $this->requestSendingLogData($request),
+            'method'  => $request->method(),
+            'url'     => $request->url(),
+            'headers' => $request->headers(),
+            'body'    => json_decode($request->body(), true),
+            'query'   => $request->method() === SymfonyRequest::METHOD_GET
+                            ? $request->data()
+                            : null,
         ];
     }
 }
