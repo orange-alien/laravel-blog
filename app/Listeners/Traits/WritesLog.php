@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Libs\Traits;
+namespace App\Listeners\Traits;
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Http\Client\Response;
 
 
-trait WritesHttpClientLog
+trait WritesLog
 {
     // ログ出力
     protected function writeLog(array $logData, string $as = 'info'): void

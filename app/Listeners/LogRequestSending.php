@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use App\Libs\Traits\HttpClientRequestSendingLog;
-use App\Libs\Traits\WritesHttpClientLog;
+use App\Listeners\Traits\RequestLog;
+use App\Listeners\Traits\WritesLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\RequestSending;
 use Illuminate\Http\Client\Request;
@@ -11,8 +11,8 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class LogRequestSending
 {
-    use HttpClientRequestSendingLog;
-    use WritesHttpClientLog;
+    use RequestLog;
+    use WritesLog;
 
     // リクエスト送信時のログを出力するかどうか
     protected bool $requestSendingLogEnabled = false;
@@ -39,7 +39,7 @@ class LogRequestSending
         $data = [
             'uuid'    => $this->uuid,
             'event'   => RequestSending::class,
-            'request' => $this->requestSendingLog($request),
+            'request' => $this->requestLog($request),
         ];
 
         // ログ出力

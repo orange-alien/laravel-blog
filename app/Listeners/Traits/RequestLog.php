@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Libs\Traits;
+namespace App\Listeners\Traits;
 
 use Illuminate\Http\Client\Request;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
-trait HttpClientRequestSendingLog
+trait RequestLog
 {
     // リクエスト送信時の内容
-    protected function requestSendingLog(Request $request) : array
+    protected function requestLog(Request $request) : array
     {
         return [
             'method'  => $request->method(),
