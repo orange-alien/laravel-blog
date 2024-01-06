@@ -26,7 +26,17 @@ class LogRequestSending
     public function handle(RequestSending $event): void
     {
         $request = $event->request;
-        $requestSendingLogData['request'] = $this->requestSendingLogData($request);
-        $this->writeLog($requestSendingLogData);
+
+        $logData = $this->logData($request);
+        $this->writeLog($logData);
+    }
+
+    // ログの内容
+    protected function logData(Request $request) : array
+    {
+        return [
+            'event'   => 'request.sending',
+            'request' => $this->requestSendingLogData($request),
+        ];
     }
 }

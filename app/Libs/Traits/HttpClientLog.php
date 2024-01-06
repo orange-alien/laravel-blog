@@ -12,7 +12,6 @@ trait HttpClientLog
     protected function requestSendingLogData(Request $request) : array
     {
         return [
-            'event'   => 'request.sending',
             'method'  => $request->method(),
             'url'     => $request->url(),
             'headers' => $request->headers(),
@@ -27,10 +26,8 @@ trait HttpClientLog
     protected function responseReceivedLogData(Response $response) : array
     {
         return [
-            'event' => 'response.received',
-            'body'  => json_decode($response->body(), true),
             'status' => $response->status(),
-            'headers' => $response->headers(),
+            'body'   => json_decode($response->body(), true),
         ];
     }
 

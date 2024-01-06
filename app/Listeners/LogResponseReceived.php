@@ -32,13 +32,19 @@ class LogResponseReceived
         $request  = $event->request;
         $response = $event->response;
 
-        $logData = [
+        $logData = $this->logData($request, $response);
+        $response->status() === SymfonyResponse::HTTP_OK
+            ? $this->writeLog($logData)
+            : $this->writeLog($logData, as:'error');
+    }
+
+    // リクエスト受信時のログの内容
+    protected function logData(Request $request, Response $response) : array
+    {
+        return [
+            'event'    => 'response.received',
             'request'  => $this->requestSendingLogData($request),
             'response' => $this->responseReceivedLogData($response),
         ];
-
-        $response->status() === SymfonyResponse::HTTP_OK
-            ? $this->writeLog($logData)
-            : $this->writeLog($logData, 'error');
     }
 }
