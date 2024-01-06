@@ -19,7 +19,7 @@ class LogRequestSending
     /**
      * Create the event listener.
      */
-    public function __construct()
+    public function __construct(protected string $uuid)
     {
         $this->requestSendingLogEnabled = config('api.request_sending_log_enabled');
     }
@@ -36,6 +36,7 @@ class LogRequestSending
         // ログの内容
         $request = $event->request;
         $data = [
+            'uuid'    => $this->uuid,
             'event'   => RequestSending::class,
             'request' => $this->requestSendingLogData($request),
         ];

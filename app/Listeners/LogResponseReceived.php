@@ -22,7 +22,7 @@ class LogResponseReceived
     /**
      * Create the event listener.
      */
-    public function __construct()
+    public function __construct(protected string $uuid)
     {
         $this->responseReceivedLogEnabled = config('api.response_received_log_enabled');
     }
@@ -40,6 +40,7 @@ class LogResponseReceived
         $request  = $event->request;
         $response = $event->response;
         $data = [
+            'uuid'    => $this->uuid,
             'event'    => ResponseReceived::class,
             'response' => $this->responseReceivedLogData($response),
         ];
