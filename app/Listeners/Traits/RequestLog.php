@@ -17,7 +17,7 @@ trait RequestLog
             'body'    => json_decode($request->body(), true),
             'query'   => $request->method() === SymfonyRequest::METHOD_GET
                             ? $request->data()
-                            : null,
+                            : [],
         ];
     }
 }
