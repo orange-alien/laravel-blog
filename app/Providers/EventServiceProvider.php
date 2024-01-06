@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Listeners\LogRequestSending;
+use App\Listeners\LogResponseReceived;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Http\Client\Events\RequestSending;
+use Illuminate\Http\Client\Events\ResponseReceived;
 use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
@@ -23,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
         // リクエスト送信時のログ
         RequestSending::class => [
             LogRequestSending::class,
+        ],
+        // レスポンス受診時のログ
+        ResponseReceived::class => [
+            LogResponseReceived::class
         ],
     ];
 
