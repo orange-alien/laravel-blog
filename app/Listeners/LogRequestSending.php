@@ -14,14 +14,14 @@ class LogRequestSending
     use WritesLog;
 
     // リクエスト送信時のログを出力するかどうか
-    protected bool $logEnabled = false;
+    protected bool $enableLog = false;
 
     /**
      * Create the event listener.
      */
     public function __construct(protected string $uuid)
     {
-        $this->logEnabled = config('api.log_request_sending_enabled');
+        $this->enableLog = config('api.enable_log_request_sending');
     }
 
     /**
@@ -29,7 +29,7 @@ class LogRequestSending
      */
     public function handle(RequestSending $event): void
     {
-        if(!$this->logEnabled) {
+        if(!$this->enableLog) {
             return;
         }
 
