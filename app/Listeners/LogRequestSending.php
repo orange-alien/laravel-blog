@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Libs\Traits\HttpClientRequestLog;
+use App\Libs\Traits\HttpClientRequestSendingLog;
 use App\Libs\Traits\WritesHttpClientLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\RequestSending;
@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class LogRequestSending
 {
-    use HttpClientRequestLog;
+    use HttpClientRequestSendingLog;
     use WritesHttpClientLog;
 
     // リクエスト送信時のログを出力するかどうか
