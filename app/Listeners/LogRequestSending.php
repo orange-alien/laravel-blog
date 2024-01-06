@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Libs\Traits\HttpClientLog;
+use App\Libs\Traits\WritesHttpClientLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\RequestSending;
 use Illuminate\Http\Client\Request;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class LogRequestSending
 {
-    use HttpClientLog;
+    use WritesHttpClientLog;
 
     // リクエスト送信時のログを出力するかどうか
     protected bool $requestSendingLogEnabled = false;

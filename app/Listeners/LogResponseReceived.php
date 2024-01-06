@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Libs\Traits\HttpClientLog;
+use App\Libs\Traits\WritesHttpClientLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Client\Events\ResponseReceived;
 use Illuminate\Http\Client\Request;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class LogResponseReceived
 {
-    use HttpClientLog;
+    use WritesHttpClientLog;
 
     // レスポンス受信時のログを出力するかどうか
     protected bool $responseReceivedLogEnabled = false;

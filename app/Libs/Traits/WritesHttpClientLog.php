@@ -6,7 +6,7 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Http\Client\Response;
 
 
-trait HttpClientLog
+trait WritesHttpClientLog
 {
     // ログ出力
     protected function writeLog(array $logData, string $as = 'info'): void
