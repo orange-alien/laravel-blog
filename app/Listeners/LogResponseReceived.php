@@ -45,7 +45,7 @@ class LogResponseReceived
             'uuid'    => $this->uuid,
             'event'    => ResponseReceived::class,
             'request'  => $this->requestLog($request),
-            'response' => $this->responseReceivedLog($response),
+            'response' => $this->responseLog($response),
         ];
 
         // ログ出力
@@ -55,7 +55,7 @@ class LogResponseReceived
     }
 
     // レスポンス受信時の内容
-    protected function responseReceivedLog(Response $response) : array
+    protected function responseLog(Response $response) : array
     {
         return [
             'status' => $response->status(),
