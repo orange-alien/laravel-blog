@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'request_sending_log_enabled'   => env('API_REQUEST_SENDING_LOG_ENABLED'  , false),
-    'response_received_log_enabled' => env('API_RESPONSE_RECEIVED_LOG_ENABLED', false),
+    'log_request_sending_enabled'   => env('LOG_REQUEST_SENDING_ENABLED'  , false),
+    'log_response_received_enabled' => env('LOG_RESPONSE_RECEIVED_ENABLED', false),
 ];

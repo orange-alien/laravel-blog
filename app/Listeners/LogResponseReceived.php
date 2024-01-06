@@ -18,14 +18,14 @@ class LogResponseReceived
     use WritesLog;
 
     // レスポンス受信時のログを出力するかどうか
-    protected bool $responseReceivedLogEnabled = false;
+    protected bool $logEnabled = false;
 
     /**
      * Create the event listener.
      */
     public function __construct(protected string $uuid)
     {
-        $this->responseReceivedLogEnabled = config('api.response_received_log_enabled');
+        $this->logEnabled = config('api.log_response_received_enabled');
     }
 
     /**
@@ -33,7 +33,7 @@ class LogResponseReceived
      */
     public function handle(ResponseReceived $event): void
     {
-        if(!$this->responseReceivedLogEnabled) {
+        if(!$this->logEnabled) {
             return;
         }
 
