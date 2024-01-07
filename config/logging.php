@@ -126,6 +126,14 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'http_client' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/http_client.log'),
+            'level' => env('HTTP_CLIENT_LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+        ],
     ],
 
 ];
